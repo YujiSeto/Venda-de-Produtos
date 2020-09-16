@@ -1,0 +1,13 @@
+C:\Users\Yuji\source\repos\Venda de Produtos\bin\Debug\netcoreapp3.1\Venda de Produtos.exe
+C:\Users\Yuji\source\repos\Venda de Produtos\bin\Debug\netcoreapp3.1\Venda de Produtos.deps.json
+C:\Users\Yuji\source\repos\Venda de Produtos\bin\Debug\netcoreapp3.1\Venda de Produtos.runtimeconfig.json
+C:\Users\Yuji\source\repos\Venda de Produtos\bin\Debug\netcoreapp3.1\Venda de Produtos.runtimeconfig.dev.json
+C:\Users\Yuji\source\repos\Venda de Produtos\bin\Debug\netcoreapp3.1\Venda de Produtos.dll
+C:\Users\Yuji\source\repos\Venda de Produtos\bin\Debug\netcoreapp3.1\Venda de Produtos.pdb
+C:\Users\Yuji\source\repos\Venda de Produtos\obj\Debug\netcoreapp3.1\Venda de Produtos.csprojAssemblyReference.cache
+C:\Users\Yuji\source\repos\Venda de Produtos\obj\Debug\netcoreapp3.1\Venda de Produtos.AssemblyInfoInputs.cache
+C:\Users\Yuji\source\repos\Venda de Produtos\obj\Debug\netcoreapp3.1\Venda de Produtos.AssemblyInfo.cs
+C:\Users\Yuji\source\repos\Venda de Produtos\obj\Debug\netcoreapp3.1\Venda de Produtos.csproj.CoreCompileInputs.cache
+C:\Users\Yuji\source\repos\Venda de Produtos\obj\Debug\netcoreapp3.1\Venda de Produtos.dll
+C:\Users\Yuji\source\repos\Venda de Produtos\obj\Debug\netcoreapp3.1\Venda de Produtos.pdb
+C:\Users\Yuji\source\repos\Venda de Produtos\obj\Debug\netcoreapp3.1\Venda de Produtos.genruntimeconfig.cache
