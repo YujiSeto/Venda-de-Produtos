@@ -30,13 +30,13 @@ namespace Venda_de_Produtos
                 Console.WriteLine("");
                 Console.WriteLine("Digite o número de Filiais:");
                 numFil = Convert.ToInt32(Console.ReadLine());
-                if (numFil <= 0)
+                if (numFil <= 0 || numFil > 100)
                 {
                     Console.WriteLine("ERRO!!!");
-                    Console.WriteLine("O número de filiais não pode ser 0 ou menor que 0.");
+                    Console.WriteLine("O número de filiais não pode ser 0, menor que 0 ou maior que 100");
                     Console.ReadKey();
                 }
-            } while (numFil <= 0);
+            } while (numFil <= 0 || numFil > 200);
             do
             {
                 Console.Clear();
@@ -46,13 +46,13 @@ namespace Venda_de_Produtos
                 Console.WriteLine("");
                 Console.WriteLine("Digite o número de Produtos:");
                 numProd = Convert.ToInt32(Console.ReadLine());
-                if (numProd <= 0)
+                if (numProd <= 0 || numProd > 200)
                 {
                     Console.WriteLine("ERRO!!!");
-                    Console.WriteLine("O número de produtos não pode ser 0 ou menor que 0.");
+                    Console.WriteLine("O número de produtos não pode ser 0, menor que 0 ou maior que 200");
                     Console.ReadKey();
                 }
-            } while (numProd <= 0);
+            } while (numProd <= 0 || numProd > 200);
 
             //Filial:
             int[] codigoFil = new int[numFil];
@@ -122,13 +122,13 @@ namespace Venda_de_Produtos
 
                     random = rnd.Next(minQtdRandom, maxQtdRandom);
                     qtdeEstoque[i,j] = random;
-                    estoqueProd[j] += random;
-                    estoqueGeral += random;
+                    estoqueProd[j] += qtdeEstoque[i,j];
+                    estoqueGeral += qtdeEstoque[i,j];
 
                     random = rnd.Next(minValorRandom, maxValorRandom);
                     valorProd[i,j] = random;
-                    valorFil[i]+= random;
-                    valorGeral += random;
+                    valorFil[i]+= valorProd[i, j];
+                    valorGeral += valorProd[i, j]* qtdeEstoque[i, j];
                 }
             }
 
@@ -176,17 +176,17 @@ namespace Venda_de_Produtos
                         Console.WriteLine("");
                         Console.WriteLine("+------------------------------------------+");
                         Console.WriteLine("|Digite a quantidade de Vendas Simultâmeas:|");
-                        Console.WriteLine("|          Minímo: 1 Máximo 20             |");
+                        Console.WriteLine("|          Minímo: 1 Máximo 1000           |");
                         Console.WriteLine("+------------------------------------------+");
                         Console.WriteLine("");
                         qtdVendas = Convert.ToInt32(Console.ReadLine());
-                        if (qtdVendas < 1 || qtdVendas > 20)
+                        if (qtdVendas < 1 || qtdVendas > 1000)
                         {
                             Console.WriteLine("ERRO!!!");
-                            Console.WriteLine("O número de Veiculos Entrando não pode ser maior que número de Cancelas.");
+                            Console.WriteLine("O número de Vendas não pode ser menor que 1 ou maior que 500");
                             Console.ReadKey();
                         }
-                    } while (qtdVendas < 1 || qtdVendas > 20);
+                    } while (qtdVendas < 1 || qtdVendas > 1000);
 
                     Console.Clear();
                     Console.WriteLine("+------------------------------------------+");
@@ -208,21 +208,29 @@ namespace Venda_de_Produtos
                 numVenda = cont;
                 randomFilial = rnd.Next(0, numFil);
                 randomProdutos = rnd.Next(0, numProd);
-                qtdVenda = rnd.Next(1, qtdeEstoque[randomFilial, randomProdutos]);
-                if (qtdVenda <= qtdeEstoque[randomFilial, randomProdutos])
+                if (qtdeEstoque[randomFilial, randomProdutos] <= 0)
                 {
-                    valorVenda = qtdVenda * valorProd[randomFilial, randomProdutos];
-                    valorFil[randomFilial] -= valorVenda;
-                    valorGeral -= valorVenda;
-                    qtdeEstoque[randomFilial, randomProdutos] -= qtdVenda;
-                    Console.WriteLine("Venda:" + numVenda + " Filial: " + codigoFil[randomFilial]);
-                    Console.WriteLine("Codigo do Produto:" + codigoProd[randomFilial, randomProdutos] + " | Descrição do Produto: " + nomeProd[randomFilial, randomProdutos] + " | Quantidade de Venda: " + qtdVenda + " | Valor Unitário: R$" + valorProd[randomFilial, randomProdutos]+",00");
-                    Console.WriteLine("Valor do Pedido: R$" + valorVenda + ",00");
-                    Console.WriteLine("");
+                    Console.WriteLine("Venda " + numVenda + " Não Realizada Quantidade Insuficiente em Estoque");
                 }
                 else
                 {
-                    Console.WriteLine("Venda " + numVenda + " Não Realizada Quantidade Insuficiente em Estoque");
+                    qtdVenda = rnd.Next(1, qtdeEstoque[randomFilial, randomProdutos]);
+                    if (qtdVenda <= qtdeEstoque[randomFilial, randomProdutos])
+                    {
+                        valorVenda = qtdVenda * valorProd[randomFilial, randomProdutos];
+                        valorFil[randomFilial] -= valorVenda;
+                        valorGeral -= valorVenda;
+                        qtdeEstoque[randomFilial, randomProdutos] -= qtdVenda;
+                        estoqueGeral -= qtdVenda;
+                        Console.WriteLine("Venda:" + numVenda + " Filial: " + codigoFil[randomFilial]);
+                        Console.WriteLine("Codigo do Produto:" + codigoProd[randomFilial, randomProdutos] + " | Descrição do Produto: " + nomeProd[randomFilial, randomProdutos] + " | Quantidade de Venda: " + qtdVenda + " | Valor Unitário: R$" + valorProd[randomFilial, randomProdutos] + ",00");
+                        Console.WriteLine("Valor do Pedido: R$" + valorVenda + ",00");
+                        Console.WriteLine("");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Venda " + numVenda + " Não Realizada Quantidade Insuficiente em Estoque");
+                    }
                 }
                 cont++;
                 Semaforo.Release();
