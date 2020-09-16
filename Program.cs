@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Collections;
 
+// Alunos: Daniel Azevedo | Rodrigo Yuji
+
 namespace Venda_de_Produtos
 {
     class Program
