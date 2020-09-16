@@ -16,9 +16,27 @@ namespace Venda_de_Produtos
 
         static void Main(string[] args)
         {
-            ///Criação de Variáveis
+            //Quantidade de Filiais e Produtos
             int numFil;
             int numProd;
+
+            //Console
+            string opcao = "0";
+
+            //Randomizador:
+            Random rnd = new Random();
+            int random;
+            int minQtdRandom = 10;
+            int maxQtdRandom = 20;
+            int minValorRandom = 1;
+            int maxValorRandom = 100;
+
+            //Semaforo
+            Semaforo = new Semaphore(1, 1);
+
+            //FOR
+            int i;
+            int j;
 
             //Configuração
             do
@@ -79,27 +97,6 @@ namespace Venda_de_Produtos
             int qtdVenda;
             int valorVenda;
 
-            //Randomizador:
-            Random rnd = new Random();
-            int random;
-            int minQtdRandom = 10;
-            int maxQtdRandom = 20;
-            int minValorRandom = 1;
-            int maxValorRandom = 100;
-
-            //FOR
-            int i;
-            int j;
-
-            //Semaforo
-            Semaforo = new Semaphore(1, 1);
-
-            //Console
-            string opcao = "0";
-
-
-
-
             //Limpeza de Dados:
             for (i = 0; i < numFil; i++)
             {
@@ -158,7 +155,6 @@ namespace Venda_de_Produtos
                 Console.WriteLine("+------------------------------------------+");
                 Console.WriteLine("");
                 opcao = Console.ReadLine();
-
                 if (opcao == "1")
                 {
                     do
@@ -187,7 +183,6 @@ namespace Venda_de_Produtos
                             Console.ReadKey();
                         }
                     } while (qtdVendas < 1 || qtdVendas > 1000);
-
                     Console.Clear();
                     Console.WriteLine("+------------------------------------------+");
                     Console.WriteLine("|       VENDAS                             |");
